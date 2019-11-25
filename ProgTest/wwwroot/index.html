@@ -1,10 +1,243 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h1,
+      h2 {
+        color: white;
+      }
+      body {
+        background-color: red;
+      }
+      .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .explanation {
+        width: 40%;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .paragraph {
+        color: grey;
+        background-color: white;
+        padding: 10px;
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        margin: -3.1px 0;
+      }
+      input[type="range"]:focus {
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        width: 80%;
+        height: 31.2px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #46262c;
+        border-radius: 0px;
+        border: 0px solid #010101;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        box-shadow: 1.8px 1.8px 5.9px rgba(255, 0, 0, 0.49),
+          0px 0px 1.8px rgba(255, 26, 26, 0.49);
+        border: 2.9px solid #941e00;
+        height: 25px;
+        width: 34px;
+        border-radius: 28px;
+        background: rgba(190, 55, 56, 0.93);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: 3.1px;
+      }
+      input[type="range"]:focus::-webkit-slider-runnable-track {
+        background: #572f36;
+      }
+      input[type="range"]::-moz-range-track {
+        width: 100%;
+        height: 31.2px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #46262c;
+        border-radius: 0px;
+        border: 0px solid #010101;
+      }
+      input[type="range"]::-moz-range-thumb {
+        box-shadow: 1.8px 1.8px 5.9px rgba(255, 0, 0, 0.49),
+          0px 0px 1.8px rgba(255, 26, 26, 0.49);
+        border: 2.9px solid #941e00;
+        height: 25px;
+        width: 34px;
+        border-radius: 28px;
+        background: rgba(190, 55, 56, 0.93);
+        cursor: pointer;
+      }
+      input[type="range"]::-ms-track {
+        width: 100%;
+        height: 31.2px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+      input[type="range"]::-ms-fill-lower {
+        background: #351d22;
+        border: 0px solid #010101;
+        border-radius: 0px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      }
+      input[type="range"]::-ms-fill-upper {
+        background: #46262c;
+        border: 0px solid #010101;
+        border-radius: 0px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      }
+      input[type="range"]::-ms-thumb {
+        box-shadow: 1.8px 1.8px 5.9px rgba(255, 0, 0, 0.49),
+          0px 0px 1.8px rgba(255, 26, 26, 0.49);
+        border: 2.9px solid #941e00;
+        width: 34px;
+        border-radius: 28px;
+        background: rgba(190, 55, 56, 0.93);
+        cursor: pointer;
+        height: 25px;
+      }
+      input[type="range"]:focus::-ms-fill-lower {
+        background: #46262c;
+      }
+      input[type="range"]:focus::-ms-fill-upper {
+        background: #572f36;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+      .calculate {
+        margin: 8px;
+        border: 0;
+        border-radius: 6px;
+        padding: 6px;
+        background-color: white;
+        color: red;
+      }
+      .output {
+        text-align: center;
+        color: white;
+        margin: 4px;
+        width: 100%;
+        height: 15%;
+        border-radius: 2px;
+        -webkit-appearance: none;
+      }
+      .values {
+        margin: 20px;
+        padding: 4px;
+      }
+    </style>
     <meta charset="utf-8" />
     <title></title>
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Body mass index (BMI)</h1>
+        <div class="slidecontainer">
+          <h2>Height</h2>
+          <input
+            type="range"
+            min="1"
+            max="300"
+            value="0"
+            step="0.1"
+            class="slider"
+            id="myRange"
+            onchange="updateValue(this.value, 'heightInput')"
+          />
+          <input
+            readonly
+            class="values"
+            id="heightInput"
+            type="number"
+            placeholder="0"
+          />
+          cm
+        </div>
+        <div class="slidecontainer">
+          <h2>Weight</h2>
+          <input
+            type="range"
+            min="1"
+            max="500"
+            value="0"
+            step="0.1"
+            class="slider"
+            id="myRange"
+            onchange="updateValue(this.value, 'weightInput')"
+          />
+          <input
+            readonly
+            class="values"
+            id="weightInput"
+            type="number"
+            placeholder="0"
+          />
+          Kg
+        </div>
+        <div>
+          <button class="calculate" onclick="calculateBMI()">
+            Calculate your BMI!
+          </button>
+        </div>
+      </div>
+      <div class="explanation">
+        <p class="paragraph">
+          BMI is a useful measurement for most people over 18 years old. But it
+          is only an estimate and it doesn’t take into account age, ethnicity,
+          gender and body composition. We recommend you also check your waist
+          measurement and other risk factors. Speak to your doctor, an
+          accredited Practising Dietitian or a health practitioner about your
+          weight. This calculator shouldn’t be used for pregnant women or
+          children.
+        </p>
+
+        <input readonly="true" class="output" id="output" type="number" />
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function updateValue(val, box) {
+      document.getElementById(box).value = val;
+    }
+
+    function calculateBMI() {
+      const height = document.getElementById("heightInput").value;
+      const weight = document.getElementById("weightInput").value;
+      const BMI = weight / ((height / 100) * (height / 100));
+      document.getElementById("output").value = BMI;
+      if (BMI < 18.5 || (BMI >= 25.0 && BMI <= 29.9)) {
+        document.getElementById("output").style.backgroundColor = "#FFBF00";
+      }
+      if (BMI >= 18.5 && BMI <= 25.0) {
+        document.getElementById("output").style.backgroundColor = "green";
+      }
+      if (BMI >= 30) {
+        document.getElementById("output").style.backgroundColor = "red";
+      }
+    }
+  </script>
 </html>

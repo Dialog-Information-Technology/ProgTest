@@ -1,3 +1,8 @@
+
+Instruction to run
+=====================
+Just open the index.html file it should do everything that is required
+
 Dialog applicant test
 =====================
 
